@@ -3,21 +3,31 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 
 class App extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      latitude: null,
-      longitude: null,
-      estacao: null,
-      data: null,
-      icone: null,
-      mensagemDeErro: null
-    }
-    console.log('construtor')
+  // constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     latitude: null,
+  //     longitude: null,
+  //     estacao: null,
+  //     data: null,
+  //     icone: null,
+  //     mensagemDeErro: null
+  //   }
+  //   console.log('construtor')
+  // }
+
+  state = {
+    latitude: null,
+    longitude: null,
+    estacao: null,
+    data: null,
+    icone: null,
+    mensagemDeErro: null
   }
 
   componentDidMount(){
     console.log("componentDidMount")
+    this.obterLocalizacao()
   }
 
   componentDidUpdate(){
@@ -110,16 +120,6 @@ class App extends React.Component{
                   className="btn btn-outline-primary w-100 mt-2"
                   onClick={() => this.obterLocalizacao()}>
                   Qual a minha estação?
-                </button>
-                {/* button.btn.btn-outline-danger.w-100.mt-2 */}
-                <button 
-                  className="btn btn-outline-danger w-100 mt-2"
-                  onClick={() => {
-                    ReactDOM.unmountComponentAtNode(
-                      document.querySelector('#root')
-                    )
-                  }}>
-                  Desmontar componente
                 </button>
               </div>
             </div>   
