@@ -1,6 +1,31 @@
 import React from 'react'
 export class EstacaoClimatica extends React.Component {
+
+  timer = null
+
+  state = {
+    data: null  
+  }
+
+  
+
+  componentDidMount(){
+    console.log("componentDidMount")
+    this.timer = setInterval(() => {
+      this.setState({data: new Date().toLocaleString()})
+    }, 1000)
+  }
+  componentWillUnmount(){
+    console.log("componentWillUnmount")
+    clearInterval(this.timer)  
+  }
+
+  componentDidUpdate(){
+    console.log('componentDidUpdate')
+  }
+
   render() {
+    console.log('render')
     return (
       <div className="card">
         <div className="card-body">
@@ -18,11 +43,9 @@ export class EstacaoClimatica extends React.Component {
               {
                 // condicao ? v1 : v2
                 this.props.latitude ?
-                  `Coordenadas: ${this.props.latitude}, ${this.props.longitude}. Data: ${this.props.data}`
-                  : this.props.mensagemDeErro ?
-                    `${this.props.mensagemDeErro}`
-                    :
-                    'Clique no botão para saber a sua estação climática'
+                  `Coordenadas: ${this.props.latitude}, ${this.props.longitude}. Data: ${this.state.data}`
+                  :
+                  'Clique no botão para saber a sua estação climática'
               }
             </p>
           </div>
